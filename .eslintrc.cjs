@@ -32,8 +32,8 @@ module.exports = {
     // https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb/index.js
     // airbnb-base does not include React
     // https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/index.js
-    'airbnb-base',
-    // 'airbnb',
+    // 'airbnb-base',
+    'airbnb',
   ],
 
   ignorePatterns: ['dist/'],
