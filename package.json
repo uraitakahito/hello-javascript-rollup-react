@@ -2,9 +2,18 @@
   "name": "hello-javascript-rollup-react",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "//scripts": {
+    "rmdir": "This command recursively deletes a folder even in environments where the rm command is not available."
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "npm run rmdir dist && npm run cleandep",
+    "cleandep": "npm run rmdir node_modules",
+    "rmdir": "node -e \"var fs = require('fs'); try{process.argv.slice(1).map((fpath) => fs.rmdirSync(fpath, { recursive: true }))}catch(err){console.log(err)}; process.exit(0);\"",
+    "build": "rollup --config",
+    "start": "rollup --config --watch"
   },
   "repository": {
     "type": "git",
