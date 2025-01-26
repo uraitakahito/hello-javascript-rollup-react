@@ -177,7 +177,7 @@ const config = defineConfig(
       plugins: [
         copy({
           targets: [
-            { src: 'src/test.html', dest: 'dist' },
+            { src: 'src/entry.html', dest: 'dist' },
           ],
         }),
       ],
