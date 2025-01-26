@@ -1,0 +1,52 @@
+{
+  "name": "hello-javascript-rollup-react",
+  "version": "1.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "//scripts": {
+    "rmdir": "This command recursively deletes a folder even in environments where the rm command is not available."
+  },
+  "scripts": {
+    "clean": "npm run rmdir dist && npm run cleandep",
+    "cleandep": "npm run rmdir node_modules",
+    "rmdir": "node -e \"var fs = require('fs'); try{process.argv.slice(1).map((fpath) => fs.rmdirSync(fpath, { recursive: true }))}catch(err){console.log(err)}; process.exit(0);\"",
+    "build": "rollup --config",
+    "start": "rollup --config --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uraitakahito/hello-javascript-rollup-react.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/uraitakahito/hello-javascript-rollup-react/issues"
+  },
+  "homepage": "https://github.com/uraitakahito/hello-javascript-rollup-react#readme",
+  "description": "",
+  "devDependencies": {
+    "@babel/core": "^7.26.7",
+    "@babel/preset-react": "^7.26.3",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-replace": "^6.0.2",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "rollup": "^4.32.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.5.0"
+  },
+  "dependencies": {
+    "@uraitakahito/hello-commonjs": "^1.0.8",
+    "@uraitakahito/hello-conditional-exports": "^1.0.1",
+    "@uraitakahito/hello-esmodule": "^1.0.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
