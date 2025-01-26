@@ -16,5 +16,8 @@
     "url": "https://github.com/uraitakahito/hello-javascript-rollup-react/issues"
   },
   "homepage": "https://github.com/uraitakahito/hello-javascript-rollup-react#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "eslint": "^8.57.1"
+  }
 }
