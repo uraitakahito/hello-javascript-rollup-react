@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
 
+import babel from '@rollup/plugin-babel';
+
 // A Rollup plugin to convert CommonJS modules to ES6
 import commonjs from 'rollup-plugin-commonjs';
 
@@ -7,6 +9,8 @@ import copy from 'rollup-plugin-copy';
 
 // https://rollupjs.org/command-line-interface/#config-intellisense
 import { defineConfig } from 'rollup';
+
+import replace from '@rollup/plugin-replace';
 
 // The @rollup/plugin-node-resolve plugin teaches Rollup how to find external modules.
 import resolve from '@rollup/plugin-node-resolve';
@@ -178,6 +182,65 @@ const config = defineConfig(
         }),
       ],
     },
+
+    {
+      input: 'src/react-check/cdn.jsx',
+      output: [
+        {
+          dir: 'dist',
+          format: 'umd',
+          globals: {
+            react: 'React',
+            'react-dom': 'ReactDOM',
+          },
+        },
+      ],
+      external: ['react', 'react-dom'],
+      plugins: [
+        babel({
+          babelHelpers: 'bundled',
+          presets: ['@babel/preset-react'],
+        }),
+        copy({
+          targets: [
+            { src: 'src/react-check/cdn.html', dest: 'dist' },
+          ],
+        }),
+      ],
+    },
+
+    {
+      input: 'src/react-check/bundled.jsx',
+      output: [
+        {
+          dir: 'dist',
+          format: 'umd',
+        },
+      ],
+      plugins: [
+        replace({
+          preventAssignment: true,
+
+          //
+          // React uses process.env to determine whether you're in a development or production environment.
+          // https://github.com/rollup/rollup/issues/487#issuecomment-177596512
+          //
+          'process.env.NODE_ENV': JSON.stringify('production'),
+        }),
+        commonjs(),
+        resolve(),
+        babel({
+          babelHelpers: 'bundled',
+          presets: ['@babel/preset-react'],
+        }),
+        copy({
+          targets: [
+            { src: 'src/react-check/bundled.html', dest: 'dist' },
+          ],
+        }),
+      ],
+    },
+
   ],
 );
 
